@@ -3,6 +3,12 @@ import json
 
 app = Flask(__name__)
 
+
+
+@app.route('/')
+def index():
+    return "<h1>Hello CleanNavi!</h1>"
+
 @app.route('/webhook', methods=['POST'])
 def webhook():
     if request.method == 'POST':
@@ -13,6 +19,3 @@ def webhook():
 
     
 
-
-if __name__ == '__main__':
-    app.run()
