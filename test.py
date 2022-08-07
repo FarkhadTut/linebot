@@ -3,6 +3,8 @@ import requests
 from bot.verify import TOKEN, root, SECRET
 import os
 import json
+import io
+from PIL import Image
 richmenu_id = '0'
 
 from linebot import (
@@ -56,14 +58,17 @@ handler = WebhookHandler(SECRET)
 
 image = os.path.join(root, 'register.png')
 file = open(image, 'rb')
-with open(image, 'rb') as f:
-    print(line_bot_api.set_rich_menu_image(richmenu_id, 'image/png', f))
-# r = requests.post(f'https://api-data.line.me/v2/bot/richmenu/{richmenu_id}/content', 
-#                     files={'media': file},
-#                     headers={'Content-Type': 'image/png', 'Authorization': f'Bearer {TOKEN}'})
+
+print(file)
+
+file = Image.open(image)
+# print(line_bot_api.set_rich_menu_image(richmenu_id, 'image/png', file))
+r = requests.post(f'https://api-data.line.me/v2/bot/richmenu/{richmenu_id}/content', 
+                    files={'media': file},
+                    headers={'Content-Type': 'image/png', 'Authorization': f'Bearer {TOKEN}'})
 
 
-print(r)
+# print(r)
 
 
 

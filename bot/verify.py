@@ -25,4 +25,6 @@ def verify(body, x_line_signature):
     hash = hmac.new(channel_secret.encode('utf-8'),
     body.encode('utf-8'), hashlib.sha256).digest()
     signature = base64.b64encode(hash)  
+    print('Signature:', signature)
+    print('X-Line-Signature:', x_line_signature)
     return signature == x_line_signature
