@@ -19,12 +19,10 @@ SECRET = config['verification']['SECRET']
 
 
 
-def verify(body):
+def verify(body, x_line_signature):
     body = json.dumps(body)
-    print(body)
     channel_secret = SECRET # Channel secret string
     hash = hmac.new(channel_secret.encode('utf-8'),
     body.encode('utf-8'), hashlib.sha256).digest()
     signature = base64.b64encode(hash)  
-    print('Signature:', signature)
-    return signature
+    return signature == x_line_signature

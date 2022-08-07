@@ -14,7 +14,7 @@ def index():
 @app.route('/webhook', methods=['POST'])
 def webhook():
     if request.method == 'POST':
-        handler(request.json)
+        handler(request.json, request.headers['X-Line-Signature'])
         return request.json
     else:
         abort(400)
