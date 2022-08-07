@@ -1,13 +1,8 @@
-import psycopg2
+import requests
+import json
 
-con = psycopg2.connect(
-    host='ec2-3-248-121-12.eu-west-1.compute.amazonaws.com',
-    database='d1ocevteqdh8vf',
-    user='wwlffnpdbvfydz',
-    port='5432',
-    password='6605220694f6f57e65406f21956bf1f4f5b91803ac39a98e111a02e4c93ae3e6'
-)
-print(1231231)
-print(33)
-print('Hello!')
+data = {'name': 'Fara',
+        'surname': 'Tutkabaev'}
 
+
+r = requests.post('http://127.0.0.1:5000/webhook', data=json.dumps(data), headers={'Content-Type': 'application/json'})
