@@ -21,6 +21,7 @@ SECRET = config['verification']['SECRET']
 
 def verify(body):
     body = json.dumps(body)
+    print(body)
     channel_secret = SECRET # Channel secret string
     hash = hmac.new(channel_secret.encode('utf-8'),
     body.encode('utf-8'), hashlib.sha256).digest()
