@@ -1,4 +1,5 @@
 from flask import request, abort, Flask
+from bot.handler import handler
 import json
 
 app = Flask(__name__)
@@ -12,6 +13,7 @@ def index():
 @app.route('/webhook', methods=['POST'])
 def webhook():
     if request.method == 'POST':
+        handler(request.json)
         return request.json
     else:
         abort(400)
