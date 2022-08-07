@@ -2,6 +2,7 @@ from flask import request, abort, Flask
 from bot.handler import handler
 import json
 
+
 app = Flask(__name__)
 
 
