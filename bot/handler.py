@@ -42,50 +42,50 @@ def handler(body, x_line_signature):
 
             else:
                 line_bot_api.reply_message(reply_token, TextSendMessage(text='Please, press "Registration" in the menu'))
-        return 
+    else:
     # if not verify(body, x_line_signature):
     #     return False
     
     #logic
     
     
-    
-    if users[user_id]['count'] == 1:
-        if type_ != 'text':
-            line_bot_api.reply_message(reply_token, TextSendMessage(text='Please tell use your full name'))
-        else:
-            name = body['events'][0]['message']['text'].strip()
-            if not ' ' in name:
-                line_bot_api.reply_message(reply_token, TextSendMessage(text='Please tell us your full name'))
-            elif len(name.split(' ')) == 2:
-                line_bot_api.reply_message(reply_token, TextSendMessage(text=f'To finish the registration, please share your home location.'))
-                print(f'User "{user_id}" count = {users[user_id]["count"]}')
-                users[user_id]['count'] +=1
-                users[user_id]['name'] = name
-                print(f'User "{user_id}" count = {users[user_id]["count"]}')
-                print()
-                print()
-                print()
-                print()
-    
-    elif users[user_id]['count'] == 2:
-        print()
+        
+        if users[user_id]['count'] == 1:
+            if type_ != 'text':
+                line_bot_api.reply_message(reply_token, TextSendMessage(text='Please tell use your full name'))
+            else:
+                name = body['events'][0]['message']['text'].strip()
+                if not ' ' in name:
+                    line_bot_api.reply_message(reply_token, TextSendMessage(text='Please tell us your full name'))
+                elif len(name.split(' ')) == 2:
+                    line_bot_api.reply_message(reply_token, TextSendMessage(text=f'To finish the registration, please share your home location.'))
+                    print(f'User "{user_id}" count = {users[user_id]["count"]}')
+                    users[user_id]['count'] +=1
+                    users[user_id]['name'] = name
+                    print(f'User "{user_id}" count = {users[user_id]["count"]}')
+                    print()
+                    print()
+                    print()
+                    print()
+        
+        elif users[user_id]['count'] == 2:
+            print()
 
-        print('FINALLLLLLLLLLLLLLLLLL')
-        print(users)
-        print(type_)
-        print(user_id)
-        print()
-        print()
-        print()
-        print()
-        if type_ != 'location':
-            line_bot_api.reply_message(reply_token, TextSendMessage(text='Please share your home location'))
-        elif user_id in users.keys():
-            address = body['events'][0]['message']['address']
-            line_bot_api.reply_message(reply_token, TextSendMessage(text=f'Registration finished!\n\nThank you! It is nice to meet you {users[user_id]["name"]}!\n! Now we know where you live... Good luck!\n{address}'))
-            del users[user_id]
-   
+            print('FINALLLLLLLLLLLLLLLLLL')
+            print(users)
+            print(type_)
+            print(user_id)
+            print()
+            print()
+            print()
+            print()
+            if type_ != 'location':
+                line_bot_api.reply_message(reply_token, TextSendMessage(text='Please share your home location'))
+            elif user_id in users.keys():
+                address = body['events'][0]['message']['address']
+                line_bot_api.reply_message(reply_token, TextSendMessage(text=f'Registration finished!\n\nThank you! It is nice to meet you {users[user_id]["name"]}!\n! Now we know where you live... Good luck!\n{address}'))
+                del users[user_id]
+    
 
     
 
