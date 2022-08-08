@@ -51,7 +51,7 @@ def handler(body, x_line_signature):
             if not ' ' in name:
                 line_bot_api.reply_message(reply_token, TextSendMessage(text='Please tell us your full name'))
             elif len(name.split(' ')) == 2:
-                line_bot_api.reply_message(reply_token, TextSendMessage(text=f'Thank you! It is nice to meet you {name}!\n\nTo finish the registration, please share your home location.'))
+                line_bot_api.reply_message(reply_token, TextSendMessage(text=f'To finish the registration, please share your home location.'))
                 users[user_id] += 1
     
     elif users[user_id] == 2:
@@ -59,7 +59,7 @@ def handler(body, x_line_signature):
             line_bot_api.reply_message(reply_token, TextSendMessage(text='Please share your home location'))
         elif user_id in users.keys():
             address = body['events'][0]['message']['address']
-            line_bot_api.reply_message(reply_token, TextSendMessage(text=f'Registration finished!\n\nThank you! Now we know where you live... Good luck!\n{address}'))
+            line_bot_api.reply_message(reply_token, TextSendMessage(text=f'Registration finished!\n\nThank you! It is nice to meet you {name}!\n! Now we know where you live... Good luck!\n{address}'))
             users[user_id] += 1
             del users[user_id]
    
