@@ -69,12 +69,21 @@ def handler(body, x_line_signature):
                 print()
     
     elif users[user_id]['count'] == 2:
+        print()
+
+        print('FINALLLLLLLLLLLLLLLLLL')
+        print(users)
+        print(type_)
+        print(user_id)
+        print()
+        print()
+        print()
+        print()
         if type_ != 'location':
             line_bot_api.reply_message(reply_token, TextSendMessage(text='Please share your home location'))
         elif user_id in users.keys():
             address = body['events'][0]['message']['address']
             line_bot_api.reply_message(reply_token, TextSendMessage(text=f'Registration finished!\n\nThank you! It is nice to meet you {users[user_id]["name"]}!\n! Now we know where you live... Good luck!\n{address}'))
-            users[user_id]['count'] += 1
             del users[user_id]
    
 
