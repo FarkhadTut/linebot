@@ -22,7 +22,7 @@ def handler(body, x_line_signature):
     reply_token = body['events'][0]['replyToken']
     type_ = body['events'][0]['message']['type']
     print('User ID:', user_id)
-    print(users.keys(0))
+    print(users.keys())
     if not user_id in users.keys():
         msg = body['events'][0]['message']['text']
         if type_ == 'text' and msg.lower() == '/register':  
