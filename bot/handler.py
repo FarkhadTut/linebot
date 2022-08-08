@@ -30,6 +30,7 @@ def handler(body, x_line_signature):
         else:
             line_bot_api.reply_message(reply_token, TextSendMessage(text='Please, press the "Registration" button to register'))
             return 
+        return 
     # if not verify(body, x_line_signature):
     #     return False
     
@@ -40,7 +41,7 @@ def handler(body, x_line_signature):
     if users[user_id] == 1:
         if type_ != 'text':
             line_bot_api.reply_message(reply_token, TextSendMessage(text='Please tell use your full name'))
-        elif user_id in users.keys():
+        else:
             name = body['events'][0]['message']['text']
             if not ' ' in name or len(name.split(' ')) != 2:
                 line_bot_api.reply_message(reply_token, TextSendMessage(text='Please tell use your full name'))
