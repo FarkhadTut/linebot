@@ -59,8 +59,14 @@ def handler(body, x_line_signature):
                 line_bot_api.reply_message(reply_token, TextSendMessage(text='Please tell us your full name'))
             elif len(name.split(' ')) == 2:
                 line_bot_api.reply_message(reply_token, TextSendMessage(text=f'To finish the registration, please share your home location.'))
-                users[user_id]['count'] = 2
+                print(f'User "{user_id}" count = {users[user_id]["count"]}')
+                users[user_id]['count'] +=1
                 users[user_id]['name'] = name
+                print(f'User "{user_id}" count = {users[user_id]["count"]}')
+                print()
+                print()
+                print()
+                print()
     
     elif users[user_id]['count'] == 2:
         if type_ != 'location':
