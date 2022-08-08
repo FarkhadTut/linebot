@@ -20,16 +20,7 @@ def handler(body, x_line_signature):
     user_id = body['events'][0]['source']['userId']
     reply_token = body['events'][0]['replyToken']
     type_ = body['events'][0]['message']['type']
-    print()
-
-    print()
-    print(users)
-    print(type_)
-    print(user_id)
-    print()
-    print()
-    print()
-    print()
+    
 
     if not user_id in users.keys():
         
@@ -53,7 +44,7 @@ def handler(body, x_line_signature):
         if users[user_id]['count'] == 1:
             if type_ != 'text':
                 line_bot_api.reply_message(reply_token, TextSendMessage(text='Please tell use your full name'))
-            else:
+            else:   
                 name = body['events'][0]['message']['text'].strip()
                 if not ' ' in name:
                     line_bot_api.reply_message(reply_token, TextSendMessage(text='Please tell us your full name'))
@@ -85,6 +76,17 @@ def handler(body, x_line_signature):
                 address = body['events'][0]['message']['address']
                 line_bot_api.reply_message(reply_token, TextSendMessage(text=f'Registration finished!\n\nThank you! It is nice to meet you {users[user_id]["name"]}!\n! Now we know where you live... Good luck!\n{address}'))
                 del users[user_id]
+    
+    print()
+
+    print()
+    print(users)
+    print(type_)
+    print(user_id)
+    print()
+    print()
+    print()
+    print()
     
 
     
