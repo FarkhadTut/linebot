@@ -7,7 +7,6 @@ users = {}
 def handler(body, x_line_signature):
 
     # print(body['message'])
-    print(body)
 
 
 
