@@ -50,7 +50,7 @@ def handler(body, x_line_signature):
             name = body['events'][0]['message']['text'].strip()
             if not ' ' in name:
                 line_bot_api.reply_message(reply_token, TextSendMessage(text='Please tell use your full name'))
-            elif len(name.split(' ').strip()) == 2:
+            elif len(name.split(' ')) == 2:
                 line_bot_api.reply_message(reply_token, TextSendMessage(text=f'Thank you! It is nice to meet you {name}!\n\nTo finish the registration, please share your home location.'))
                 users[user_id] += 1
     
