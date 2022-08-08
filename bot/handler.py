@@ -40,8 +40,8 @@ def handler(body, x_line_signature):
                 users[user_id]['count'] = 1
                 line_bot_api.reply_message(reply_token, TextSendMessage(text='OK. Let\'s begin the registration.\n\nPlease tell use your full name (ex.: Stiven Gerrard):'))
 
-        else:
-            line_bot_api.reply_message(reply_token, TextSendMessage(text='Please, press "Registration" in the menu'))
+            else:
+                line_bot_api.reply_message(reply_token, TextSendMessage(text='Please, press "Registration" in the menu'))
         return 
     # if not verify(body, x_line_signature):
     #     return False
