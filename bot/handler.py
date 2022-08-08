@@ -24,10 +24,12 @@ def handler(body, x_line_signature):
     if not user_id in users.keys():
         msg = body['events'][0]['message']['text']
         if type_ == 'text' and msg.lower() == '/register':  
-            line_bot_api.reply_message(reply_token, TextSendMessage(text='OK. We are about to start a short registration process...'))
+            line_bot_api.reply_message(reply_token, TextSendMessage(text='OK. Let\'s begin the registration.\n\nPlease tell use your full name (ex.: Stiven Gerrard):'))
             users[user_id] = 1
+            return 
         else:
             line_bot_api.reply_message(reply_token, TextSendMessage(text='Please, press the "Registration" button to register'))
+            return 
     # if not verify(body, x_line_signature):
     #     return False
     
@@ -51,7 +53,7 @@ def handler(body, x_line_signature):
             line_bot_api.reply_message(reply_token, TextSendMessage(text='Please share your home location'))
         elif user_id in users.keys():
             address = body['events'][0]['message']['address']
-            line_bot_api.reply_message(reply_token, TextSendMessage(text=f'Thank you! Now we now where you live... Good luck!\n{address}'))
+            line_bot_api.reply_message(reply_token, TextSendMessage(text=f'Registration finished!\n\nThank you! Now we now where you live... Good luck!\n{address}'))
             line_bot_api.reply_message(reply_token, TextSendMessage(text='Registration finished!'))
 
         
