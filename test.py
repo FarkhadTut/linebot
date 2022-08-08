@@ -62,18 +62,9 @@ file = open(image, 'rb')
 print(file)
 
 file = Image.open(image)
-# print(line_bot_api.set_rich_menu_image(richmenu_id, 'image/png', file))
-r = requests.post(f'https://api-data.line.me/v2/bot/richmenu/{richmenu_id}/content', 
-                    files={'media': file},
-                    headers={'Content-Type': 'image/png', 'Authorization': f'Bearer {TOKEN}'})
+# line_bot_api.set_rich_menu_image(richmenu_id, 'image/png', file)
 
 
-# print(r)
-
-
-
-# r = requests.post(f'https://api.line.me/v2/bot/user/all/richmenu/{richmenu_id}', 
-#                     headers={'Content-Type': 'image/png', 'Authorization': f'Bearer {TOKEN}'})
-
-
-# print(r)
+rich_menu_list = line_bot_api.get_rich_menu_list()
+for rich_menu in rich_menu_list:
+    print(rich_menu.rich_menu_id)
