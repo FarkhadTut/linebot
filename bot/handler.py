@@ -62,9 +62,8 @@ def handler(body, x_line_signature):
             line_bot_api.reply_message(reply_token, TextSendMessage(text=f'Registration finished!\n\nThank you! Now we now where you live... Good luck!\n{address}'))
             line_bot_api.reply_message(reply_token, TextSendMessage(text='Registration finished!'))
             users[user_id] += 1
-        
-    if users[user_id] >= 3:
-        del users[user_id]
+            del users[user_id]
+   
 
     
 
