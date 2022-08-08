@@ -1,5 +1,4 @@
 from bot.verify import verify, TOKEN, root, SECRET
-from bot.users import users
 
 from linebot import (
     LineBotApi, WebhookHandler
@@ -13,10 +12,9 @@ from linebot.models import (
 
 line_bot_api = LineBotApi(TOKEN)
 handler = WebhookHandler(SECRET)
-
-
+users = {}
 def handler(body, x_line_signature):
-
+    global users
     # print(body['message'])
 
     user_id = body['events'][0]['source']['userId']
