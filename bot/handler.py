@@ -23,9 +23,11 @@ def handler(body, x_line_signature):
     type_ = body['events'][0]['message']['type']
     if not user_id in users.keys():
         msg = body['events'][0]['message']['text']
-        if type_ == 'text' and msg.lower() == 'start':  
+        if type_ == 'text' and msg.lower() == '/register':  
             line_bot_api.reply_message(reply_token, TextSendMessage(text='OK. We are about to start a short registration process...'))
             users[user_id] = 1
+        else:
+            line_bot_api.reply_message(reply_token, TextSendMessage(text='Please, press the "Registration" button to register'))
     # if not verify(body, x_line_signature):
     #     return False
     
