@@ -24,6 +24,8 @@ def handler(body, x_line_signature):
 
     print()
     print(users)
+    print(type_)
+    print(user_id)
     print()
     print()
     print()
