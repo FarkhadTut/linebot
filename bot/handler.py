@@ -24,11 +24,12 @@ def handler(body, x_line_signature):
     if not user_id in users.keys():
         msg = body['events'][0]['message']['text']
         if type_ == 'text' and msg.lower() == '/register':  
-            line_bot_api.reply_message(reply_token, TextSendMessage(text='OK. Let\'s begin the registration.\n\nPlease tell use your full name (ex.: Stiven Gerrard):'))
             users[user_id] = 1
+            line_bot_api.reply_message(reply_token, TextSendMessage(text='OK. Let\'s begin the registration.\n\nPlease tell use your full name (ex.: Stiven Gerrard):'))
+            
             return 
         else:
-            line_bot_api.reply_message(reply_token, TextSendMessage(text='Please, press the "Registration" button to register'))
+            line_bot_api.reply_message(reply_token, TextSendMessage(text='Please, press "Registration" in the menu'))
             return 
         return 
     # if not verify(body, x_line_signature):
