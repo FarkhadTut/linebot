@@ -15,6 +15,7 @@ def index():
 def webhook():
     if request.method == 'POST':
         handler(request.json, request.headers['X-Line-Signature'])
+        print(request.json)
         return request.json
     else:
         abort(400)
