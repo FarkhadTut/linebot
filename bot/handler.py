@@ -18,7 +18,7 @@ def handler(body, x_line_signature):
 
     # print(body['message'])
 
-    user_id = body['events'][0]['message']['source']['userId']
+    user_id = body['events'][0]['source']['userId']
     reply_token = body['events'][0]['replyToken']
 
     if not user_id in users.keys():
