@@ -1,4 +1,6 @@
 from bot.verify import verify, TOKEN, root, SECRET
+from bot.users import users
+
 from linebot import (
     LineBotApi, WebhookHandler
 )
@@ -11,7 +13,6 @@ from linebot.models import (
 
 line_bot_api = LineBotApi(TOKEN)
 handler = WebhookHandler(SECRET)
-users = {}
 
 
 def handler(body, x_line_signature):
@@ -24,11 +25,13 @@ def handler(body, x_line_signature):
     print('User ID:', user_id)
     print(users.keys())
     if not user_id in users.keys():
-        msg = body['events'][0]['message']['text']
-        if type_ == 'text' and msg.lower() == '/register': 
-            users[user_id] = {} 
-            users[user_id]['count'] = 1
-            line_bot_api.reply_message(reply_token, TextSendMessage(text='OK. Let\'s begin the registration.\n\nPlease tell use your full name (ex.: Stiven Gerrard):'))
+        
+        if type_ == 'text': 
+            msg = body['events'][0]['message']['text']
+            if msg.lower() == '/register':
+                users[user_id] = {} 
+                users[user_id]['count'] = 1
+                line_bot_api.reply_message(reply_token, TextSendMessage(text='OK. Let\'s begin the registration.\n\nPlease tell use your full name (ex.: Stiven Gerrard):'))
 
         else:
             line_bot_api.reply_message(reply_token, TextSendMessage(text='Please, press "Registration" in the menu'))
